@@ -1,0 +1,22 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Run main.py (as pano_process module)",
+            "type": "debugpy", // Or "debugpy" if that's your VS Code default
+            "request": "launch",
+            "module": "pano_process.main", // Tells VS Code to run 'main.py' as part of the 'pano_process' module
+            "console": "integratedTerminal",
+            "env": {
+                // This adds the parent directory of your workspace to PYTHONPATH.
+                // If your workspaceFolder is '/home/fuad/Work/Projects/pano_process',
+                // this adds '/home/fuad/Work/Projects/' to PYTHONPATH.
+                // This allows Python to find 'pano_process' as a top-level package.
+                "PYTHONPATH": "${joinPath(workspaceFolder, '..')}"
+            }
+            // "cwd" (current working directory) will default to ${workspaceFolder},
+            // which is '/home/fuad/Work/Projects/pano_process/'. This is usually fine
+            // for relative file access within your scripts (e.g., "./data/file.csv").
+        }
+    ]
+}

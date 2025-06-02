@@ -1,0 +1,27 @@
+{
+  "BLD_ID": 516941892988,
+  "bld_height": 16.24,
+  "bld_elevation": 1329.64,
+  "bld_source_dataset": "LARIAC2",
+  "bld_capture_date": 2008,
+  "bld_status": "Unchanged",
+  "bld_centroid_lon": -118.14793731841972,
+  "bld_centroid_lat": 34.19395525408546,
+  "DAMAGE_assessment": "Destroyed (>50%)",
+  "associated_views": [
+    {
+      "original_pano_filename": "VID_20250327_120940_20250507131706_0_000024.jpg",
+      "original_pano_abs_path": "/home/fuad/Work/Projects/pano_process/output/01_sampled_images/VID_20250327_120940_20250507131706.mp4/VID_20250327_120940_20250507131706_0_000024.jpg",
+      "rotated_pano_path": "./output/04_rotated_panoramas/VID_20250327_120940_20250507131706_0_000024_BLD516941892988_FACADE19_ROT.jpg",
+      "view_cube_faces": {
+        "front": "./output/06_sorted_outputs_by_building/516941892988/VID_20250327_120940_20250507131706_0_000024_BLD516941892988_FACADE19_ROT_front.png"
+      },
+      "pano_latitude": 34.194052,
+      "pano_longitude": -118.1476642,
+      "pano_true_heading": 200.18,
+      "distance_to_centroid_m": 33.074133976460296,
+      "desired_camera_yaw_to_facade": 249.4076909457894,
+      "applied_yaw_rotation_deg": -131.96457772304177
+    }
+  ]
+}
