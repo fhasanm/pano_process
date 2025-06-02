@@ -1,4 +1,4 @@
-# pipeline_library/deployment_standalone.py
+# deploy.py
 #!/usr/bin/env python3
 """
 Standalone Deployment Script for Specific Building Outputs

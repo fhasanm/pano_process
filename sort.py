@@ -1,7 +1,7 @@
 
 #!/usr/bin/env python3
 """
-output_sorter.py – Sorts extracted cube faces into per-building folders.
+sort.py – Sorts extracted cube faces into per-building folders.
 Reads metadata from cube_extractor.py and, for each building ID (BLD_ID),
 creates a subdirectory. Copies/moves the relevant cube faces into these
 subdirectories. Also creates a 'building_info.json' in each building's

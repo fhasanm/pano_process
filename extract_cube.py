@@ -1,7 +1,7 @@
 
 #!/usr/bin/env python3
 """
-cube_extractor.py – Extracts selected cubemap faces from rotated equirectangular panoramas.
+extract_cube.py – Extracts selected cubemap faces from rotated equirectangular panoramas.
 Reads metadata about rotated panoramas, converts each to a cubemap,
 and saves specified faces (e.g., front, right, etc.) as PNG images.
 Outputs the paths to these cube faces along with consolidated metadata in a JSON file.

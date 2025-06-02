@@ -1,4 +1,4 @@
-# pipeline_library/config.py
+# config.py
 import os
 import torch
 

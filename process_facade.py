@@ -1,7 +1,7 @@
 
 #!/usr/bin/env python3
 """
-facade_processor.py – Identifies building façades near panoramas.
+process_facade.py – Identifies building façades near panoramas.
 Reads panorama metadata and a GeoJSON of building footprints.
 For each panorama, finds nearby buildings and determines which building edge
 is most "frontal" to the camera.

@@ -1,4 +1,4 @@
-# pipeline_library/utils.py
+# utils.py
 import os
 from math import radians, degrees, atan2, sin, cos, sqrt
 import numpy as np

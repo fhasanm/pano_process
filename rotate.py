@@ -1,7 +1,7 @@
 
 #!/usr/bin/env python3
 """
-panorama_rotator.py – Rotates panoramas to face identified building façades.
+rotate.py – Rotates panoramas to face identified building façades.
 Reads a CSV of panorama-façade matches (from facade_processor.py) and
 the original (or blurred) panoramas.
 Applies a two-stage yaw rotation:
@@ -102,8 +102,6 @@ def rotate_panoramas_to_facades(
     
     print(f"Rotating {len(df_filtered)} panoramas based on facade matches...")
     for idx, row in tqdm(df_filtered.iterrows(), total=df_filtered.shape[0], desc="Rotating Panoramas"):
-        if idx>20:
-            break
         # Determine the correct path to the source panorama
         # 'pano_abs_path' from facade_processor should be the primary source.
         # If it's not absolute, or if we prefer to ensure it's from source_panoramas_dir:

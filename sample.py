@@ -1,7 +1,7 @@
 
 #!/usr/bin/env python3
 """
-video_sampler.py – Samples video frames based on distance using mapillary_tools.
+sample.py – Samples video frames based on distance using mapillary_tools.
 """
 import os
 import subprocess

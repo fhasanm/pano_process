@@ -1,4 +1,4 @@
-# pipeline_library/main.py
+# main.py
 #!/usr/bin/env python3
 """
 Main Pipeline Orchestrator
