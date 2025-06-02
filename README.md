@@ -31,7 +31,7 @@ This project provides a pipeline for processing 360° panoramic video footage. I
 
 1.  **Clone the Repository:**
     ```bash
-    git clone [https://github.com/fhasanm/pano_process.git](https://github.com/fhasanm/pano_process.git)
+    git clone https://github.com/fhasanm/pano_process.git
     cd pano_process
     ```
 
