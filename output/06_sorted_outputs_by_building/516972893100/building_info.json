@@ -1,0 +1,69 @@
+{
+  "BLD_ID": 516972893100,
+  "bld_height": 12.68,
+  "bld_elevation": 1333.51,
+  "bld_source_dataset": "LARIAC2",
+  "bld_capture_date": 2008,
+  "bld_status": "Unchanged",
+  "bld_centroid_lon": -118.14780880272036,
+  "bld_centroid_lat": 34.194228760328166,
+  "DAMAGE_assessment": "Destroyed (>50%)",
+  "associated_views": [
+    {
+      "original_pano_filename": "VID_20250327_120940_20250507131706_0_000016.jpg",
+      "original_pano_abs_path": "/home/fuad/Work/Projects/pano_process/output/01_sampled_images/VID_20250327_120940_20250507131706.mp4/VID_20250327_120940_20250507131706_0_000016.jpg",
+      "rotated_pano_path": "./output/04_rotated_panoramas/VID_20250327_120940_20250507131706_0_000016_BLD516972893100_FACADE12_ROT.jpg",
+      "view_cube_faces": {
+        "front": "./output/06_sorted_outputs_by_building/516972893100/VID_20250327_120940_20250507131706_0_000016_BLD516972893100_FACADE12_ROT_front.png"
+      },
+      "pano_latitude": 34.1942832,
+      "pano_longitude": -118.1475605,
+      "pano_true_heading": 199.95,
+      "distance_to_centroid_m": 28.595486838629174,
+      "desired_camera_yaw_to_facade": 256.33674145707994,
+      "applied_yaw_rotation_deg": -124.47157544922811
+    },
+    {
+      "original_pano_filename": "VID_20250327_120940_20250507131706_0_000017.jpg",
+      "original_pano_abs_path": "/home/fuad/Work/Projects/pano_process/output/01_sampled_images/VID_20250327_120940_20250507131706.mp4/VID_20250327_120940_20250507131706_0_000017.jpg",
+      "rotated_pano_path": "./output/04_rotated_panoramas/VID_20250327_120940_20250507131706_0_000017_BLD516972893100_FACADE13_ROT.jpg",
+      "view_cube_faces": {
+        "front": "./output/06_sorted_outputs_by_building/516972893100/VID_20250327_120940_20250507131706_0_000017_BLD516972893100_FACADE13_ROT_front.png"
+      },
+      "pano_latitude": 34.1942555,
+      "pano_longitude": -118.1475722,
+      "pano_true_heading": 201.04,
+      "distance_to_centroid_m": 26.583211966883525,
+      "desired_camera_yaw_to_facade": 261.76835357526494,
+      "applied_yaw_rotation_deg": -120.12996333104309
+    },
+    {
+      "original_pano_filename": "VID_20250327_120940_20250507131706_0_000022.jpg",
+      "original_pano_abs_path": "/home/fuad/Work/Projects/pano_process/output/01_sampled_images/VID_20250327_120940_20250507131706.mp4/VID_20250327_120940_20250507131706_0_000022.jpg",
+      "rotated_pano_path": "./output/04_rotated_panoramas/VID_20250327_120940_20250507131706_0_000022_BLD516972893100_FACADE17_ROT.jpg",
+      "view_cube_faces": {
+        "front": "./output/06_sorted_outputs_by_building/516972893100/VID_20250327_120940_20250507131706_0_000022_BLD516972893100_FACADE17_ROT_front.png"
+      },
+      "pano_latitude": 34.1941116,
+      "pano_longitude": -118.1476369,
+      "pano_true_heading": 201.1,
+      "distance_to_centroid_m": 24.795524565989904,
+      "desired_camera_yaw_to_facade": 310.39546595795343,
+      "applied_yaw_rotation_deg": -71.5628509483546
+    },
+    {
+      "original_pano_filename": "VID_20250327_120940_20250507131706_0_000023.jpg",
+      "original_pano_abs_path": "/home/fuad/Work/Projects/pano_process/output/01_sampled_images/VID_20250327_120940_20250507131706.mp4/VID_20250327_120940_20250507131706_0_000023.jpg",
+      "rotated_pano_path": "./output/04_rotated_panoramas/VID_20250327_120940_20250507131706_0_000023_BLD516972893100_FACADE18_ROT.jpg",
+      "view_cube_faces": {
+        "front": "./output/06_sorted_outputs_by_building/516972893100/VID_20250327_120940_20250507131706_0_000023_BLD516972893100_FACADE18_ROT_front.png"
+      },
+      "pano_latitude": 34.1940821,
+      "pano_longitude": -118.1476505,
+      "pano_true_heading": 201.1,
+      "distance_to_centroid_m": 26.460062237001328,
+      "desired_camera_yaw_to_facade": 317.4791361846934,
+      "applied_yaw_rotation_deg": -64.47918072161463
+    }
+  ]
+}
