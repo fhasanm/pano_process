@@ -63,7 +63,7 @@ This project provides a pipeline for processing 360° panoramic video footage. I
             * `license_plate_detector.pt`
             * `sam2.1_hiera_tiny.pt`
             * `sam2.1_hiera_t.yaml` 
-        * *Instructions for Google Drive link:* Create a shareable link for your Google Drive folder containing these models. Set permissions to "Anyone with the link can view."
+    
 
 5.  **Download Input Data (GeoJSON, CSV):**
     The necessary building footprint and damage assessment data can be downloaded from the link below. Place the contents into the `data/` directory.
