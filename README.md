@@ -120,7 +120,7 @@ This script processes a video specifically to generate outputs for a single targ
     * **Target Building Identification:**
         * Set `TARGET_BLD_ID` (if known).
         * OR set `TARGET_LATITUDE` and `TARGET_LONGITUDE` for the script to find the nearest building.
-    * `PREDETERMINED_PANO_ZERO_OFFSET`: This **must** be set accurately, as this script does not include an interactive offset measurement step.
+    * `PREDETERMINED_PANO_ZERO_OFFSET`: This can be set in case the offset value is clearly known, either from visual assumption or if its set fixed during data collection.
     * Other stage parameters as needed.
 
 * **Run `deploy.py`:**
