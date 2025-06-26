@@ -1,15 +1,22 @@
 #!/usr/bin/env python3
-"""
-offset.py – Interactively measure yaw offset.
-Allows user to click on a panorama to determine the camera's optical axis world heading
-relative to the vehicle's TrueHeading by clicking a point on the vehicle (typically rear).
-"""
+# offset.py – Interactively measure yaw offset.
+# Allows user to click on a panorama to determine the camera's optical axis world heading
+# relative to the vehicle's TrueHeading by clicking a point on the vehicle (typically rear).
+
 import os
+import sys
 import json
 import random
+import matplotlib
+
+# ------------------------------------------------------------------------------
+# FORCE the Qt5Agg backend *before* importing pyplot.  On Windows this will open
+# a real window even if there’s no DISPLAY env var set.
+matplotlib.use("Qt5Agg")  
 import matplotlib.pyplot as plt
+# ------------------------------------------------------------------------------
+
 from pathlib import Path
-import sys
 
 def _get_user_click_for_offset(image_path: Path, true_heading: float):
     """
@@ -40,68 +47,67 @@ def _get_user_click_for_offset(image_path: Path, true_heading: float):
 
     fig, ax = plt.subplots(figsize=(14, 7))
     ax.imshow(img)
-    ax.axvline(w / 2, linestyle="--", linewidth=1, color="white", alpha=0.7, label="Pano Center (0° Yaw)")
-    
+    ax.axvline(w / 2,
+               linestyle="--",
+               linewidth=1,
+               color="white",
+               alpha=0.7,
+               label="Pano Center (0° Yaw)")
+
     # Instruction updated to reflect clicking a backward point.
     instruction_text = (
         f"Vehicle TrueHeading (FORWARD): {true_heading:.2f}°\n"
         f"Image: {image_path.name}\n\n"
-        "1. Identify a point directly BACKWARD on the vehicle (e.g., rear antenna, center of rear bumper).\n"
+        "1. Identify a point directly BACKWARD on the vehicle "
+        "(e.g., rear antenna, center of rear bumper).\n"
         "2. Click on that point in the image.\n"
         "3. Close this window to continue."
     )
-    fig.text(0.5, 0.98, instruction_text, ha="center", va="top", fontsize=10, color="black",
+    fig.text(0.5,
+             0.98,
+             instruction_text,
+             ha="center",
+             va="top",
+             fontsize=10,
+             color="black",
              bbox=dict(boxstyle="round,pad=0.5", fc="yellow", alpha=0.8))
-    
+
     ax.set_title("Measure Camera Yaw Offset by Clicking Vehicle's REAR Point")
     plt.legend()
-    
-    try:
-        if "DISPLAY" not in os.environ and not hasattr(sys, 'ps1'):
-             print("Warning: Matplotlib is likely running in a headless environment. Interactive plot may not display.")
-             print("Cannot measure offset interactively. Please run in an environment with a display server.")
-             plt.close(fig)
-             return 0.0 # Default or error indication
 
-        click_points = plt.ginput(1, timeout=-1) # timeout=-1 waits indefinitely
-    except Exception as e:
-        print(f"Could not get GUI input, possibly due to environment: {e}. Returning default offset 0.0.")
+    if sys.platform.startswith("linux") and "DISPLAY" not in os.environ:
+        print("Warning: Likely headless Linux—skipping interactive offset.")
         plt.close(fig)
-        return 0.0 # Default offset if ginput fails
+        return 0.0
+
+    fig.show()
+    plt.pause(0.1)
+
+
+    try:
+        click_points = plt.ginput(1, timeout=-1)  # waits indefinitely for one click
+    except Exception as e:
+        print(f"Could not get GUI input (environment issue?): {e}. Returning default offset 0.0.")
+        plt.close(fig)
+        return 0.0
 
     plt.close(fig)
 
     if not click_points:
         print("No point selected. Cannot calculate offset.")
         return None
-        
+
     x_click, _ = click_points[0]
 
     # --- CORRECTED OFFSET CALCULATION ---
-    # dx_pixels: Pixel difference of the clicked (REAR) point from the panorama center.
-    # Positive if click is to the right of center.
     dx_pixels = x_click - (w / 2)
-
-    # dx_degrees_pano_coord: Angular position of the clicked (REAR) point in the panorama's
-    # coordinate system (0 degrees is pano center). Positive if to the right.
     dx_degrees_pano_coord = dx_pixels * degrees_per_pixel
-
-    # vehicle_rear_world_heading: The actual world heading of the point the user clicked
-    # (the vehicle's rear). true_heading is the vehicle's FORWARD direction.
     vehicle_rear_world_heading = (true_heading + 180.0) % 360.0
-
-    # camera_optical_axis_world_heading: The world heading of the panorama's center line (0-degree yaw).
-    # If the vehicle's REAR (at vehicle_rear_world_heading) appears at dx_degrees_pano_coord
-    # in the panorama's frame, then the panorama's center world heading is:
-    # vehicle_rear_world_heading - dx_degrees_pano_coord
-    camera_optical_axis_world_heading = (vehicle_rear_world_heading - dx_degrees_pano_coord + 360.0) % 360.0
-
-    # PANO_ZERO_OFFSET: The value to add to the vehicle's FORWARD TrueHeading to get the
-    # world heading of the panorama's center.
-    # Offset = Camera Optical Axis World Heading - Vehicle's FORWARD TrueHeading
-    # Normalized to the range [-180, 180]
+    camera_optical_axis_world_heading = (
+        vehicle_rear_world_heading - dx_degrees_pano_coord + 360.0
+    ) % 360.0
     offset = ((camera_optical_axis_world_heading - true_heading + 180.0) % 360.0) - 180.0
-    
+
     print(f"\n--- Offset Calculation (Clicked REAR point) ---")
     print(f"Image: {image_path.name}")
     print(f"Image width: {w}px, Degrees per pixel: {degrees_per_pixel:.3f}")
@@ -113,13 +119,15 @@ def _get_user_click_for_offset(image_path: Path, true_heading: float):
     print(f"Calculated Vehicle REAR World Heading: {vehicle_rear_world_heading:.2f}°")
     print(f"Calculated Camera Optical Axis World Heading (Pano Center): {camera_optical_axis_world_heading:.2f}°")
     print(f"Calculated PANO_ZERO_OFFSET: {offset:+.2f}°")
-    print(f"(This means the panorama's center is oriented {offset:+.2f}° from the vehicle's FORWARD heading)")
+    print("(This means the panorama's center is oriented "
+          f"{offset:+.2f}° from the vehicle's FORWARD heading)")
     print("--------------------------------------------------\n")
-    
+
     return offset
 
+
 def measure_yaw_offset_interactively(
-    panoramas_image_dir: str, 
+    panoramas_image_dir: str,
     mapillary_image_description_json_path: str
 ) -> float:
     """
@@ -155,9 +163,7 @@ def measure_yaw_offset_interactively(
         print(f"No panorama metadata found in JSON file: {mapillary_image_description_json_path}")
         return 0.0
 
-    heading_map = {} 
-
-    # print(f"Processing {len(pano_metadata_list)} records from {mapillary_image_description_json_path}...") # Optional: for verbosity
+    heading_map = {}
     for p_meta in pano_metadata_list:
         try:
             json_filename_str = p_meta.get('filename')
@@ -165,16 +171,15 @@ def measure_yaw_offset_interactively(
                 continue
 
             path_from_json = Path(json_filename_str)
-
             if path_from_json.exists() and path_from_json.is_file():
                 true_heading_value = None
-                if 'MAPCompassHeading' in p_meta and \
-                   isinstance(p_meta['MAPCompassHeading'], dict) and \
-                   'TrueHeading' in p_meta['MAPCompassHeading']:
+                if 'MAPCompassHeading' in p_meta \
+                   and isinstance(p_meta['MAPCompassHeading'], dict) \
+                   and 'TrueHeading' in p_meta['MAPCompassHeading']:
                     true_heading_value = p_meta['MAPCompassHeading']['TrueHeading']
-                elif 'CompassHeading' in p_meta and \
-                     isinstance(p_meta['CompassHeading'], dict) and \
-                     'TrueHeading' in p_meta['CompassHeading']: 
+                elif 'CompassHeading' in p_meta \
+                     and isinstance(p_meta['CompassHeading'], dict) \
+                     and 'TrueHeading' in p_meta['CompassHeading']:
                     true_heading_value = p_meta['CompassHeading']['TrueHeading']
 
                 if true_heading_value is not None:
@@ -182,11 +187,8 @@ def measure_yaw_offset_interactively(
                         heading_map[str(path_from_json)] = float(true_heading_value)
                     except (ValueError, TypeError):
                         pass
-        except KeyError:
-            pass 
-        except Exception: # Catch any other unexpected errors with a record
+        except Exception:
             pass
-
 
     if not heading_map:
         print(f"No image files with valid TrueHeading found based on the paths in '{mapillary_image_description_json_path}'.")
@@ -197,22 +199,20 @@ def measure_yaw_offset_interactively(
         return 0.0
 
     valid_image_paths_with_heading = list(heading_map.keys())
-    
     chosen_image_path_str = random.choice(valid_image_paths_with_heading)
-    chosen_image_path_obj = Path(chosen_image_path_str) 
+    chosen_image_path_obj = Path(chosen_image_path_str)
     true_heading_for_chosen_image = heading_map[chosen_image_path_str]
 
-    print(f"\nStarting interactive yaw offset measurement...")
-    # print(f"Found {len(valid_image_paths_with_heading)} images with heading data to choose from.") # Optional: for verbosity
+    print("\nStarting interactive yaw offset measurement...")
     print(f"Using randomly selected panorama: {chosen_image_path_obj.name}")
-    # print(f"Full path: {chosen_image_path_str}") # Optional: for verbosity
     print(f"Vehicle TrueHeading (FORWARD) for this image: {true_heading_for_chosen_image:.2f}°")
 
-    measured_offset = _get_user_click_for_offset(chosen_image_path_obj, true_heading_for_chosen_image)
+    measured_offset = _get_user_click_for_offset(chosen_image_path_obj,
+                                                true_heading_for_chosen_image)
 
     if measured_offset is None:
         print("Offset measurement failed or was cancelled by the user.")
-        return 0.0 
+        return 0.0
 
     print(f"Interactive measurement complete. Measured PANO_ZERO_OFFSET: {measured_offset:+.2f}°")
     return measured_offset
