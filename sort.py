@@ -123,7 +123,6 @@ def sort_cube_faces_by_building(
             }
 
             for face_name, face_filename in extracted_faces_dict.items():
-                # **THE FIX for "File Not Found"**:
                 # Reconstruct the full path to the source image.
                 # It's located relative to the JSON file we are reading.
                 source_image_dir = meta_json_path_obj.parent / "cubeface_image_files"
