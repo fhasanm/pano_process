@@ -10,7 +10,7 @@ import json
 from pathlib import Path
 import numpy as np
 from PIL import Image
-from equilib import equi2cube # Ensure equilib is installed
+from equilib import equi2cube 
 from tqdm import tqdm
 from utils import ensure_dir_exists
 from config import ALL_POSSIBLE_CUBE_FACES # Using the list from config
@@ -116,9 +116,6 @@ def extract_cubemap_faces(
                     face_output_path = cubeface_images_dir / face_output_filename
                     
                     face_image_pil.save(face_output_path)
-                    
-                    # <<< THE CRITICAL FIX >>>
-                    # Store only the filename, not the full path, in the metadata.
                     saved_face_paths[current_face_name] = face_output_filename
             
             updated_record = dict(record) 
