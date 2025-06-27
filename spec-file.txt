@@ -238,8 +238,7 @@ https://conda.anaconda.org/conda-forge/win-64/cairo-1.18.4-h5782bbf_0.conda
 https://conda.anaconda.org/conda-forge/win-64/gst-plugins-base-1.24.11-h3fe0a9e_0.conda
 https://conda.anaconda.org/conda-forge/win-64/libcblas-3.9.0-20_win64_mkl.conda
 https://conda.anaconda.org/conda-forge/win-64/liblapack-3.9.0-20_win64_mkl.conda
-https://repo.anaconda.com/pkgs/main/win-64/libtorch-2.5.1-cpu_mkl_h1aab2ed_102.conda
-https://conda.anaconda.org/pytorch/win-64/pytorch-2.2.2-py3.10_cuda11.8_cudnn8_0.tar.bz2
+https://anaconda.org/pytorch/pytorch/2.3.1/download/win-64/pytorch-2.3.1-py3.10_cuda11.8_cudnn8_0.tar.bz2
 https://conda.anaconda.org/conda-forge/noarch/requests-2.32.4-pyhd8ed1ab_0.conda
 https://conda.anaconda.org/conda-forge/win-64/harfbuzz-11.2.1-h8796e6f_0.conda
 https://conda.anaconda.org/conda-forge/win-64/liblapacke-3.9.0-20_win64_mkl.conda
@@ -257,8 +256,8 @@ https://conda.anaconda.org/conda-forge/win-64/qt6-main-6.9.1-h02ddd7d_0.conda
 https://conda.anaconda.org/conda-forge/win-64/scipy-1.15.2-py310h15c175c_0.conda
 https://conda.anaconda.org/conda-forge/win-64/shapely-2.1.1-py310hb052cae_0.conda
 https://conda.anaconda.org/conda-forge/noarch/snuggs-1.4.7-pyhd8ed1ab_2.conda
-https://conda.anaconda.org/pytorch/win-64/torchaudio-2.2.2-py310_cu118.tar.bz2
-https://conda.anaconda.org/pytorch/win-64/torchvision-0.17.2-py310_cu118.tar.bz2
+https://anaconda.org/pytorch/torchaudio/2.3.1/download/win-64/torchaudio-2.3.1-py310_cu118.tar.bz2
+https://anaconda.org/pytorch/torchvision/0.18.1/download/win-64/torchvision-0.18.1-py310_cu118.tar.bz2
 https://conda.anaconda.org/conda-forge/noarch/geopandas-base-1.1.0-pyha770c72_0.conda
 https://conda.anaconda.org/conda-forge/win-64/libopencv-4.10.0-qt5_py310h99d2f09_506.conda
 https://conda.anaconda.org/conda-forge/win-64/librsvg-2.58.4-h5ce5fed_3.conda
