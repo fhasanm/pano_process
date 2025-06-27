@@ -10,8 +10,7 @@ import random
 import matplotlib
 
 # ------------------------------------------------------------------------------
-# FORCE the Qt5Agg backend *before* importing pyplot.  On Windows this will open
-# a real window even if there’s no DISPLAY env var set.
+# FORCE the Qt5Agg backend *before* importing pyplot.  
 matplotlib.use("Qt5Agg")  
 import matplotlib.pyplot as plt
 # ------------------------------------------------------------------------------
@@ -54,7 +53,6 @@ def _get_user_click_for_offset(image_path: Path, true_heading: float):
                alpha=0.7,
                label="Pano Center (0° Yaw)")
 
-    # Instruction updated to reflect clicking a backward point.
     instruction_text = (
         f"Vehicle TrueHeading (FORWARD): {true_heading:.2f}°\n"
         f"Image: {image_path.name}\n\n"
@@ -99,7 +97,7 @@ def _get_user_click_for_offset(image_path: Path, true_heading: float):
 
     x_click, _ = click_points[0]
 
-    # --- CORRECTED OFFSET CALCULATION ---
+    # --- OFFSET CALCULATION ---
     dx_pixels = x_click - (w / 2)
     dx_degrees_pano_coord = dx_pixels * degrees_per_pixel
     vehicle_rear_world_heading = (true_heading + 180.0) % 360.0
