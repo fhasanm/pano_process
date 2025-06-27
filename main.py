@@ -170,8 +170,7 @@ def main():
         # --- STAGE 7: OUTPUT SORTING (now inside the loop) ---
         if RUN_STAGE_7_OUTPUT_SORTING:
             print("\n--- Running Stage 7: Output Sorting ---")
-            # **THE FIX for output location**:
-            # The final sorted directory is now specific to this video.
+            
             final_sorted_output_dir = video_output_dir / "07_sorted_by_building"
             
             sort.sort_cube_faces_by_building(
